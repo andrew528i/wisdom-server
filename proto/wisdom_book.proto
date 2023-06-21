@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+option go_package = "github.com/andrew528i/wisdom-server/proto";
+
+service WisdomBook {
+  rpc GetChallenge(Empty) returns (Challenge) {}
+  rpc GetQuote(Challenge) returns (Quote) {}
+}
+
+message Empty {}
+
+message Challenge {
+  bytes data = 1;
+  int64 deadline = 2;
+  uint64 nonce = 3;
+  uint64 solution = 4;
+  bytes signature = 5;
+}
+
+message Quote {
+  string quote = 1;
+}
